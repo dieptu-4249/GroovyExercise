@@ -23,9 +23,9 @@ public class Employee {
 	String position
 	String office
 	int age
-	String startDate
-	String salary
-	public Employee(String name, String position,String office, int age, String startDate, String salary ){
+	Date startDate
+	int salary
+	public Employee(String name, String position,String office, int age, Date startDate, int salary ){
 		this.name = name;
 		this.position = position;
 		this.office = office;
