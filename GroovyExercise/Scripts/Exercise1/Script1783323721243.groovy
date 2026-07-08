@@ -102,7 +102,7 @@ def employeeMaps = employees.collect {
 		position: it.position,
 		office: it.office,
 		age: it.age,
-		startDate: it.startDate,
+		startDate: it.startDate.format("dd/MM/yyyy"),
 		salary: it.salary
 		]
 }
