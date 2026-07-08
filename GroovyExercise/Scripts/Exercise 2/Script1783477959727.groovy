@@ -87,10 +87,11 @@ try {
 	//and salary < 5 million VND (take the exchange rate from the sheet)
 	println "=====7====="
 	println "---People with position as Accountant or Software Engineer and salary < 5 milion VND"
-	TestData rateData = findTestData("Data Files/Exchange Rate Data");
-	int rate = rateData.getValue(2,1).toInteger();
+	def rateJson = new File("rate.json")
+	def rateData = new JsonSlurper().parse(rateJson)
+	int rate = rateData.VND
 	List<Employee> employeeWithPosAndSalary = employees.findAll{
-		employee -> (employee.position == 'Account' || employee.position == 'Software Engineer') && (employee.salary*rate < 5000000)
+		employee -> (employee.position == 'Accountant' || employee.position == 'Software Engineer') && (employee.salary*rate < 5000000)
 	}
 	for(Employee e in employeeWithPosAndSalary) {
 		println "Name: ${e.name} | Exchange salary: ${e.salary*rate} VND"

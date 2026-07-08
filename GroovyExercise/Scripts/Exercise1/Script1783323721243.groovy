@@ -90,7 +90,7 @@ println "---People with position as Accountant or Software Engineer and salary <
 TestData rateData = findTestData("Data Files/Exchange Rate Data");
 int rate = rateData.getValue(2,1).toInteger();
 List<Employee> employeeWithPosAndSalary = employees.findAll{
-	employee -> (employee.position == 'Account' || employee.position == 'Software Engineer') && (employee.salary*rate < 5000000)
+	employee -> (employee.position == 'Accountant' || employee.position == 'Software Engineer') && (employee.salary*rate < 5000000)
 }
 for(Employee e in employeeWithPosAndSalary) {
 	println "Name: ${e.name} | Exchange salary: ${e.salary*rate} VND"
@@ -108,4 +108,14 @@ def employeeMaps = employees.collect {
 }
 String jsonOutput = JsonOutput.prettyPrint(JsonOutput.toJson(employeeMaps))
 new File("employees.json").text = jsonOutput;
+def rateMap = [
+	USD: rateData.getValue("USD", 1).toInteger(),
+	VND: rateData.getValue("VND", 1).toInteger()
+]
+
+String rateJson = JsonOutput.prettyPrint(
+	JsonOutput.toJson(rateMap)
+)
+
+new File("rate.json").text = rateJson
 
