@@ -115,15 +115,18 @@ try {
 	        employee.salary
 	    ].join(",")).append("\n")
 	}
-
 	new File("employees.csv").text = csv.toString()
-
 	println "CSV file created successfully!"
-	
-	
-	
-	
-	
+	println "Writing rate data to CSV"
+	def rateCsv = new StringBuilder()
+	// header
+	rateCsv.append(rateData.keySet().join(","))
+	rateCsv.append("\n")
+	// data
+	rateCsv.append(rateData.values().join(","))
+	rateCsv.append("\n")
+	new File("rate.csv").text = rateCsv.toString()
+	println "rate.csv created successfully!"
 } catch (Exception e) {
     println "Error processing JSON file: ${e.getMessage()}"
 }
